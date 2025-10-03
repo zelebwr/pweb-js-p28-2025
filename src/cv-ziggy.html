@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Creative C</title>
+        <link rel="stylesheet" href="css/style.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+            integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+    </head>
+
+    <!-- 
+    =====================================
+    PRELIMINARIES
+    - Can use media queries in CSS for responsiveness
+    - Desktop: >992px
+    - Tablet: 768px - 992px
+    - Mobile: <768px
+    =====================================
+    -->
+
+    <body>
+
+        <!-- 
+        =====================================
+        HEADER & NAVIGATION
+        - This header contains the site's main navigation.
+        - It's a copy of the navbar from index.html to ensure a consistent
+        user experience across all pages.
+        - NOTE: This is @oooryzaaa's job desk on styling the navbar overall looks,
+          meanwhile @HikariReiziq is in charge of the responsiveness and interactivity
+        =====================================
+        -->
+        <header class="main-header">
+            <nav class="navbar">
+                <div class="container nav-container">
+                    <a href="index.html" class="nav-brand">ZeZiZa</a>
+
+                    <input
+                        type="checkbox"
+                        class="hamburger-toggle"
+                        id="hamburger-toggle"
+                    />
+                    <label for="hamburger-toggle" class="hamburger-icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </label>
+
+                    <ul class="nav-menu">
+                        <li class="nav-item">
+                            <a href="index.html" class="nav-link">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="cv-zele.html" class="nav-link">Zele's CV</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="cv-ziggy.html" class="nav-link">Ziggy's CV</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="cv-oryza.html" class="nav-link">Oryza's CV</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <!-- 
+        =====================================
+        CV CONTAINER
+        - This is the main container for the cv so that there would be an "inner box" that is separate from the body
+        - This should be a two-column layout on desktop that stacks in to a single column on mobile
+        - Can use flexbox or grid for this, on .cv-container
+            - The responsiveness can be done with media queries in CSS
+            - The naming convention used here is BEM (Block Element Modifier)
+              - Block: cv-sidebar, cv-main-content, cv-section, cv-entry
+              - Element: cv-profile__image, cv-entry__title
+              - For further reading on BEM: https://youtu.be/SLjHSVwXYq4?si=Ph8zkvE4K6vSX6Hj
+        =====================================
+        -->
+        <div class="cv-container">
+            <!-- 
+            =====================================
+            MAIN CV SIDEBAR
+            - This section hold the profile picture, name, title, contact info, socials, and skills
+            - On desktop, this can be stick to the top of the viewport when user is scrolling the main content
+            - Use `position: sticky; top: 2rem;` in CSS for this
+            =====================================
+            -->
+            <aside class="cv-sidebar">
+                <cv-profile>
+                    <img src="../assets/Hikari.png" alt="Photo" class="cv-profile__image" />
+                    <h1 class="cv-profile__name">Ziggy's CV</h1>
+                    <p class="cv-profile__title">Information Technology Undergraduates</p>
+                </cv-profile>
+
+                <!-- Contact Info and Socials -->
+                <div class="cv-contact">
+                    <h2 class="cv-sidebar__heading">Ziggy's Contact Info</h2>
+                    <ul class="cv-contact__list">
+                        <li>Email: reiziqhikari@gmail.com</li>
+                        <li>Phone: (+62) 858-7752-9661</li>
+                        <li>Address: Jl. Rumah Kayalan Paling Indah a.k.a. ITS nomor Tower 2</li>
+                    </ul>
+
+                    <div class="cv-socials">
+                        <a href="https://www.linkedin.com/in/hikari-reiziq-662aa7281/" class="social-icon-link" target="_blank"
+                            ><i class="fa-brands fa-linkedin"></i></a
+                        ><a href="https://www.instagram.com/hikari_reiziq/" class="social-icon-link" target="_blank"
+                            ><i class="fa-brands fa-instagram"></i></a
+                        ><a href="https://github.com/HikariReiziq" class="social-icon-link" target="_blank"
+                            ><i class="fa-brands fa-github"></i
+                        ></a>
+                    </div>
+
+                <!-- Skills Section -->
+                </div>
+                <div class="cv-skils">
+                    <h2 class="cv-sidebar__heading"></h2>
+                    <ul class="cv-skills__list">
+                        <li>Exceptional Teamwork</li>
+                        <li>Strong Motivation</li>
+                        <li>Time Management</li>
+                        <li>Problem-Solving Abilities</li>
+                    </ul>
+                </div>
+            </aside>
+
+
+            <main class="cv-main-content">
+                <!-- 
+                =====================================
+                MAIN CV CONTENT
+                - This is where the main content of the CV goes
+                - Each section (About, Experience, Education, Projects) is a separate <section>
+                - Each entry within a section (e.g., each job in Experience) is an <article>
+                =====================================
+                -->
+                <!-- About Section -->
+                <section id="about" class="cv-section">
+                    <h2 class="cv-section__heading">About Me</h2>
+                    <p>As an aspiring IT professional, I am continually seeking opportunities to expand my knowledge and expertise in the field of technology. I am experienced in administration, committee work, sponsorship and useful training. I am a person who is willing to learn from mistakes, learn new things, and like challenges.</p>
+                </section>
+
+                <!-- Experience Section -->
+                <section class="cv-section" id="experience">
+                    <h2 class="cv-section__heading">Experience</h2>
+
+                    <article class="cv-entry">
+                        <h3 class="cv-entry__title">Pengurus Rukun Tetangga 4 Perumahan Puri Mas | Kepemudaan</h3>
+                        <p class="cv-entry__info">This division is also responsible for documenting every work program and activity, ensuring transparency and the sustainability of youth contributions to community life.</p>
+                        <ul class="cv-details">
+                            <li>Manage social media accounts and administration as a means of disseminating information to residents.
+</li>
+                            <li>Initiate and organize community activities for young people, such as play dates (MABAR), to strengthen solidarity.</li>
+                            <li>Actively participating in supporting the operations of various community events, such as community meetings, community service, and celebrations.</li>
+                            <li>Responsible for documenting every work program and activity organized in the neighborhood association (RT).</li>
+                        </ul>
+                    </article>
+                    
+                    <article class="cv-entry">
+                        <h3 class="cv-entry__title">ARA 6.0 | Sponsorship</h3>
+                        <p class="cv-entry__info">The ARA 6.0 project we focused on enhancing the welfare of the whole ARA 6.0 team.</p>
+                        <ul class="cv-details">
+                            <li>Drafting sponsorship proposals by coordinating event details from various related divisions.</li>
+                            <li>Approaching and establishing professional communication with various potential corporate partners.</li>
+                            <li>Contributing to negotiations and successfully securing sponsorship partnerships with two partners, namely
+Dewaweb and Zoom Hotel.</li>
+                        </ul>
+                    </article>
+
+                    <article class="cv-entry">
+                        <h3 class="cv-entry__title">Ini Lho ITS 2025 | Operational</h3>
+                        <p class="cv-entry__info">As an operational staff member, specifically in the medical department at an event, I was responsible for providing health services and first aid to participants and committee members.</p>
+                        <ul class="cv-details">
+                            <li>Responsible for providing health services and first aid for tens of thousands of
+participants and committee members during the event.</li>
+                            <li>Actively coordinate with all committee divisions to take preventive measures and
+ensure medical readiness in all areas of the event.</li>
+                            <li>Mobilize and be on standby to provide quick and effective treatment in the event of a health incident</li>
+                        </ul>
+                    </article>
+
+                </section>
+
+                <!-- Education Section -->
+                <section class="cv-section" id="education">
+                    <h2 class="cv-section__heading">Education</h2>
+                    <article class="cv-entry">
+                        <h3 class="cv-entry__title">Jurusan MIPA </h3>
+                        <p class="cv-entry__info">SMA Negeri 17 Surabaya | 2021 - 2024</p>
+                        <h3 class="cv-entry__title">Information Technology Undergraduate</h3>
+                        <p class="cv-entry__info">Institute Technology Sepuluh Nopember | 2024 - 2025</p>
+                    </article>
+                </section>
+
+                <!-- Projects Section -->
+                <section class="cv-section" id="projects">
+                    <h2 class="cv-section__heading">Projects</h2>
+
+                                        <article class="cv-entry">
+                        <h3 class="cv-entry__title">Website Portfolio</h3>
+                        <p class="cv-entry__info">My first website project with HTML and CSS. This website is made for my personal portfolio with a cheerful theme. From this project, I learned something new about HTML and CSS structure.</p>
+                        <ul class="cv-details">
+                            <ul><img 
+        src="../assets/PortoWebHikari.png" 
+        alt="Website Portfolio"
+        width="560" height="315">
+</ul>
+                        </ul>
+                        
+                    </article>
+
+                    <article class="cv-entry">
+                        <h3 class="cv-entry__title">Analisis dan Strategi | BizzIT Compfest</h3>
+                        <p class="cv-entry__info">This project requires improving promotional methods to
+increase store profitability and providing visualizations that Jack
+and all employees can understand. Put yourself in Michael's shoes and explain your solution
+to meet Jack's request.</p>
+                        <ul class="cv-details">
+                            <ul><iframe width="560" height="315" src="https://www.youtube.com/embed/Leol3uXOJR4?si=r80MjCePLq4jEuDo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></ul>
+                        </ul>
+                        
+                    </article>
+
+                                            <article class="cv-entry">
+                        <h3 class="cv-entry__title">Antara Keluhan dan Apresiasi | Mini Video Project - Oral Communication</h3>
+                        <p class="cv-entry__info">The theme of the video is how to effectively communicate appreciation, criticism, and complaints.</p>
+                        <ul class="cv-details">
+                            <ul><iframe width="560" height="315" src="https://www.youtube.com/embed/ECXxMUQSX20?si=Gy5BeiTXjY5tSKMX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></ul>
+                        </ul>
+                        
+                    </article>
+
+                        </ul>
+                    </article>
+
+                </section>
+            </main>
+        </div>
+
+    </body>
+</html>

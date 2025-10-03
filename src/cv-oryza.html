@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Creative C</title>
+        <link rel="stylesheet" href="css/style.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+            integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+    </head>
+
+    <!-- 
+    =====================================
+    PRELIMINARIES
+    - Can use media queries in CSS for responsiveness
+    - Desktop: >992px
+    - Tablet: 768px - 992px
+    - Mobile: <768px
+    =====================================
+    -->
+
+    <body>
+
+        <!-- git
+        =====================================
+        HEADER & NAVIGATION
+        - This header contains the site's main navigation.
+        - It's a copy of the navbar from index.html to ensure a consistent
+        user experience across all pages.
+        - NOTE: This is @oooryzaaa's job desk on styling the navbar overall looks,
+          meanwhile @HikariReiziq is in charge of the responsiveness and interactivity
+        =====================================
+        -->
+        <header class="main-header">
+            <nav class="navbar">
+                <div class="container nav-container">
+                    <a href="index.html" class="nav-brand">ZeZiZa</a>
+
+                    <input
+                        type="checkbox"
+                        class="hamburger-toggle"
+                        id="hamburger-toggle"
+                    />
+                    <label for="hamburger-toggle" class="hamburger-icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </label>
+
+                    <ul class="nav-menu">
+                        <li class="nav-item">
+                            <a href="index.html" class="nav-link">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="cv-zele.html" class="nav-link">Zele's CV</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="cv-ziggy.html" class="nav-link">Ziggy's CV</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="cv-oryza.html" class="nav-link">Oryza's CV</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <!-- 
+        =====================================
+        CV CONTAINER
+        - This is the main container for the cv so that there would be an "inner box" that is separate from the body
+        - This should be a two-column layout on desktop that stacks in to a single column on mobile
+        - Can use flexbox or grid for this, on .cv-container
+            - The responsiveness can be done with media queries in CSS
+            - The naming convention used here is BEM (Block Element Modifier)
+              - Block: cv-sidebar, cv-main-content, cv-section, cv-entry
+              - Element: cv-profile__image, cv-entry__title
+              - For further reading on BEM: https://youtu.be/SLjHSVwXYq4?si=Ph8zkvE4K6vSX6Hj
+        =====================================
+        -->
+        <div class="cv-container">
+            <!-- 
+            =====================================
+            MAIN CV SIDEBAR
+            - This section hold the profile picture, name, title, contact info, socials, and skills
+            - On desktop, this can be stick to the top of the viewport when user is scrolling the main content
+            - Use `position: sticky; top: 2rem;` in CSS for this
+            =====================================
+            -->
+            <aside class="cv-sidebar">
+                <cv-profile>
+                    <img src="../assets/7_team-photo.jpeg" alt="Team Photo" class="cv-profile__image" />
+                    <h1 class="cv-profile__name">Oryza's CV</h1>
+                    <p class="cv-profile__title">Information Technology Undergraduate</p>
+                </cv-profile>
+
+                
+                <!-- Contact Info and Socials -->
+                <div class="cv-contact">
+                    <h2 class="cv-sidebar__heading">Oryza's Contact Info</h2>
+                    <ul class="cv-contact__list">
+                        <li>Email: oryzaqiara1@gmail.com</li>
+                        <li>Phone: (+62) 813-4817-0880</li>
+                        <li>Address: Jl. Darul Aisyah III GKB Gresik</li>
+                    </ul>
+
+                    <div class="cv-socials">
+                        <a href="https://www.linkedin.com/in/oryza-qiara-ramadhani-612371323/" class="social-icon-link" target="_blank"
+                            ><i class="fa-brands fa-linkedin"></i></a
+                        ><a href="https://www.instagram.com/oooryyzaaa/" class="social-icon-link" target="_blank"
+                            ><i class="fa-brands fa-instagram"></i></a
+                        ><a href="https://github.com/oooryzaaa" class="social-icon-link" target="_blank"
+                            ><i class="fa-brands fa-github"></i
+                        ></a>
+                    </div>
+
+                <!-- Skills Section -->
+                </div>
+                <div class="cv-skils">
+                    <h2 class="cv-sidebar__heading"></h2>
+                    <ul class="cv-skills__list">
+                        <li>Exceptional Teamwork</li>
+                        <li>Strong Communication Skills</li>
+                        <li>Adaptability and Flexibility</li>
+                        <li>Problem-Solving Abilities</li>
+                    </ul>
+                </div>
+            </aside>
+
+
+            <main class="cv-main-content">
+                <!-- 
+                =====================================
+                MAIN CV CONTENT
+                - This is where the main content of the CV goes
+                - Each section (About, Experience, Education, Projects) is a separate <section>
+                - Each entry within a section (e.g., each job in Experience) is an <article>
+                =====================================
+                -->
+                <!-- About Section -->
+                <section id="about" class="cv-section">
+                    <h2 class="cv-section__heading">About Me</h2>
+                    <p> Hi! I'm Oryza Qiara, an Information Technology undergraduate passionate about software development, web design, and collaborative projects. 
+                        I enjoy solving complex problems, learning new technologies, and working in teams to achieve clear goals. 
+                        I thrive in environments that challenge me to grow while allowing me to contribute creatively.</p>
+                </section>
+
+                <!-- Experience Section -->
+                <section class="cv-section" id="experience">
+                    <h2 class="cv-section__heading">Experience</h2>
+
+                    <article class="cv-entry">
+                    <h3 class="cv-entry__title">ARA 6.0 – Staff Fundraise</h3>
+                    <p class="cv-entry__info">
+                         As a Staff Fundraise for ARA 6.0, I focused on supporting the financial and material needs of the team to ensure the success of the event.
+                    </p>
+                <ul class="cv-details">
+                    <li>Organized merchandise sales and fundraising campaigns.</li>
+                    <li>Coordinated with team members to secure resources for the event.</li>
+                    <li>Managed donations and ensured proper allocation of funds.</li>
+                    <li>Assisted in planning and logistics to support team activities.</li>
+                </ul>
+                </article>
+
+
+                    <article class="cv-entry">
+                        <h3 class="cv-entry__title">INCLENATION 2025 – Staff Consumption Medical</h3>
+                    <p class="cv-entry__info">
+                        As a Staff Consumption Medical, I was responsible for ensuring smooth operations related to medical and consumption logistics during the event.
+                    </p>
+                <ul class="cv-details">
+                    <li>Monitored and managed medical supplies for participants and staff.</li>
+                    <li>Ensured availability of safe and appropriate food and beverages.</li>
+                    <li>Coordinated with the medical team to handle health-related concerns.</li>
+                    <li>Enhanced organizational and problem-solving skills in a fast-paced event setting.</li>
+                </ul>
+                </article>
+
+
+                </section>
+
+                <!-- Education Section -->
+                <section class="cv-section" id="education">
+                    <h2 class="cv-section__heading">Education</h2>
+                    <article class="cv-entry">
+                        <h3 class="cv-entry__title">Information Technology Undergraduates</h3>
+                        <p class="cv-entry__info">Institute Technology Sepuluh Nopember | 2024 - 2025</p>
+                        <ul class="cv-details">
+                            <li>Collaborated on team-based projects to enhance problem-solving and communication skills.</li>
+                        </ul>
+                    </article>
+                </section>
+
+                <!-- Projects Section -->
+                <section class="cv-section" id="projects">
+                    <h2 class="cv-section__heading">Projects</h2>
+
+                    <article class="cv-entry">
+                        <h3 class="cv-entry__title">Portfolio</h3>
+                        <p class="cv-entry__info">Make a very cool portfolio page, showcasing our very intricate designs and projects.</p>
+                        <ul class="cv-details">
+                            <li>Ze - Jonathan Zelig S.</li>
+                            <li>Zi - M. Hikari Reiziq R.</li>
+                            <li>Za - Oryza Qiara R.</li>
+                        </ul>
+                    </article>
+
+                    <article class="cv-entry">
+                        <h3 class="cv-entry__title">Curriculum Vitae</h3>
+                        <p class="cv-entry__info">Make a very cool Curriculum Vitae page, showcasing our skills and experiences.</p>
+                        <ul class="cv-details">
+                            <li>Ze - Jonathan Zelig S.</li>
+                            <li>Zi - M. Hikari Reiziq R.</li>
+                            <li>Za - Oryza Qiara R.</li>
+                        </ul>
+                    </article>
+
+                </section>
+            </main>
+        </div>
+
+    </body>
+</html>

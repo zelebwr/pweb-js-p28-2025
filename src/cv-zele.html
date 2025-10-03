@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Creative C</title>
+        <link rel="stylesheet" href="css/style.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+            integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+    </head>
+
+    <!-- 
+    =====================================
+    PRELIMINARIES
+    - Can use media queries in CSS for responsiveness
+    - Desktop: >992px
+    - Tablet: 768px - 992px
+    - Mobile: <768px
+    =====================================
+    -->
+
+    <body>
+        <!-- 
+        =====================================
+        HEADER & NAVIGATION
+        - This header contains the site's main navigation.
+        - It's a copy of the navbar from index.html to ensure a consistent
+        user experience across all pages.
+        - NOTE: This is @oooryzaaa's job desk on styling the navbar overall looks,
+          meanwhile @HikariReiziq is in charge of the responsiveness and interactivity
+        =====================================
+        -->
+        <header class="main-header">
+            <nav class="navbar">
+                <div class="container nav-container">
+                    <a href="index.html" class="nav-brand">ZeZiZa</a>
+
+                    <input
+                        type="checkbox"
+                        class="hamburger-toggle"
+                        id="hamburger-toggle"
+                    />
+                    <label for="hamburger-toggle" class="hamburger-icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </label>
+
+                    <ul class="nav-menu">
+                        <li class="nav-item">
+                            <a href="index.html" class="nav-link">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="cv-zele.html" class="nav-link"
+                                >Zele's CV</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a href="cv-ziggy.html" class="nav-link"
+                                >Ziggy's CV</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a href="cv-oryza.html" class="nav-link"
+                                >Oryza's CV</a
+                            >
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <!-- 
+        =====================================
+        CV CONTAINER
+        - This is the main container for the cv so that there would be an "inner box" that is separate from the body
+        - This should be a two-column layout on desktop that stacks in to a single column on mobile
+        - Can use flexbox or grid for this, on .cv-container
+            - The responsiveness can be done with media queries in CSS
+            - The naming convention used here is BEM (Block Element Modifier)
+              - Block: cv-sidebar, cv-main-content, cv-section, cv-entry
+              - Element: cv-profile__image, cv-entry__title
+              - For further reading on BEM: https://youtu.be/SLjHSVwXYq4?si=Ph8zkvE4K6vSX6Hj
+        =====================================
+        -->
+        <div class="cv-container">
+            <!-- 
+            =====================================
+            MAIN CV SIDEBAR
+            - This section hold the profile picture, name, title, contact info, socials, and skills
+            - On desktop, this can be stick to the top of the viewport when user is scrolling the main content
+            - Use `position: sticky; top: 2rem;` in CSS for this
+            =====================================
+            -->
+            <aside class="cv-sidebar">
+                <cv-profile>
+                    <img
+                        src="../assets/zelig.png"
+                        alt="Team Photo"
+                        class="cv-profile__image"
+                    />
+                    <h1 class="cv-profile__name">Zelig's CV</h1>
+                    <p class="cv-profile__title">
+                        Information Technology Undergraduate
+                    </p>
+                </cv-profile>
+
+                <!-- Contact Info and Socials -->
+                <div class="cv-contact">
+                    <h2 class="cv-sidebar__heading">Zelig's Contact Info</h2>
+                    <ul class="cv-contact__list">
+                        <li>Email: jonathanzelig6013+prakPweb1@gmail.com</li>
+                        <li>Phone: (+62) 812-5269-9428</li>
+                        <li>
+                            Address: Jl. Rumah Kayalan Paling Indah a.k.a. ITS
+                            nomor Tower 2
+                        </li>
+                    </ul>
+
+                    <div class="cv-socials">
+                        <a
+                            href="https://www.linkedin.com/in/jonathanzelig/"
+                            class="social-icon-link"
+                            target="_blank"
+                            ><i class="fa-brands fa-linkedin"></i></a
+                        ><a
+                            href="https://www.instagram.com/zelebwr"
+                            class="social-icon-link"
+                            target="_blank"
+                            ><i class="fa-brands fa-instagram"></i></a
+                        ><a
+                            href="https://github.com/zelebwr"
+                            class="social-icon-link"
+                            target="_blank"
+                            ><i class="fa-brands fa-github"></i
+                        ></a>
+                    </div>
+
+                    <!-- Skills Section -->
+                </div>
+                <div class="cv-skils">
+                    <h2 class="cv-sidebar__heading"></h2>
+                    <ul class="cv-skills__list">
+                        <li>Exceptional Teamwork</li>
+                        <li>Strong Communication Skills</li>
+                        <li>Adaptability and Flexibility</li>
+                        <li>Problem-Solving Abilities</li>
+                    </ul>
+                </div>
+            </aside>
+
+            <main class="cv-main-content">
+                <!-- 
+                =====================================
+                MAIN CV CONTENT
+                - This is where the main content of the CV goes
+                - Each section (About, Experience, Education, Projects) is a separate <section>
+                - Each entry within a section (e.g., each job in Experience) is an <article>
+                =====================================
+                -->
+                <!-- About Section -->
+                <section id="about" class="cv-section">
+                    <h2 class="cv-section__heading">About Me</h2>
+                    <p>
+                        I'm a passionate IT undergraduate who's eager to learn
+                        and grow in the field of technology. I'm also
+                        enthusiastic about collaborating with others and
+                        contributing to innovative projects. I want to dedicate
+                        myself in the Cybersecurity field, but I'm still
+                        exploring the vast knowledge it encompasses.
+                    </p>
+                </section>
+
+                <!-- Experience Section -->
+                <section class="cv-section" id="experience">
+                    <h2 class="cv-section__heading">Experience</h2>
+
+                    <article class="cv-entry">
+                        <h3 class="cv-entry__title">Eterion Website</h3>
+                        <p class="cv-entry__info">
+                            I contributed into the making of the Eterion
+                            website, the IT'24's website.
+                        </p>
+                        <ul class="cv-details">
+                            <li>
+                                Made Card Carousel for the Eterion's Logo's
+                                Philosophy.
+                            </li>
+                            <li>
+                                Made an interactive color picker display for the
+                                Eterion's Logo's Philosophy.
+                            </li>
+                            <li>
+                                Made an interactive map display for the
+                                Eterion's Map.
+                            </li>
+                            <li>
+                                <a href="https://eterion.vercel.app/" class="project-card__link" target="_blank"
+                                    >Check it out here!</a
+                                >
+                            </li>
+                        </ul>
+                    </article>
+
+                    <article class="cv-entry">
+                        <h3 class="cv-entry__title">ARA 6.0</h3>
+                        <p class="cv-entry__info">
+                            I'm a part of the ARA 6.0 committee as a CTF Staff.
+                        </p>
+                        <ul class="cv-details">
+                            <li>Contributed in making requests to the other divisions.</li>
+                            <li>Actively participated in discussions.</li>
+                        </ul>
+                    </article>
+                </section>
+
+                <!-- Education Section -->
+                <section class="cv-section" id="education">
+                    <h2 class="cv-section__heading">Education</h2>
+                    <article class="cv-entry">
+                        <h3 class="cv-entry__title">
+                            Information Technology Undergraduates
+                        </h3>
+                        <p class="cv-entry__info">
+                            Institute Technology Sepuluh Nopember | 2024 - 2025
+                        </p>
+                        <ul class="cv-details">
+                            <li>Top three GPA in the entire 2024 batch.</li>
+                        </ul>
+                    </article>
+                </section>
+
+                <!-- Projects Section -->
+                <section class="cv-section" id="projects">
+                    <h2 class="cv-section__heading">Projects</h2>
+
+                    <article class="cv-entry">
+                        <h3 class="cv-entry__title">Portfolio</h3>
+                        <p class="cv-entry__info">
+                            I have ever done a lot of small projects that can be seen <a href="https://linktr.ee/JonathanZeligS" target="_blank">here</a>.
+                        </p>
+                        <ul class="cv-details">
+                            <li>Mini Christmas Game in Pascal</li>
+                            <li>EDA on Top Movies in Python</li>
+                            <li>Data Engineering on Chicago Taxi Trips</li>
+                        </ul>
+                    </article>
+
+                    <article class="cv-entry">
+                        <h3 class="cv-entry__title">Curriculum Vitae</h3>
+                        <p class="cv-entry__info">
+                            You can check my CV more detailed <a href="https://drive.google.com/file/d/1HwQAJpzBw1uprdxBSWKt_tdg6gS5jW3B/view?usp=sharing" target="_blank">here</a>.
+                        </p>
+                        <ul class="cv-details">
+                            <li>Top 3 GPA in the entire 2024 batch.</li>
+                            <li>OKKBK IT 2025 - Event Staff</li>
+                            <li>ITS CAMP 2025 - Mentor</li>
+                        </ul>
+                    </article>
+                </section>
+            </main>
+        </div>
+    </body>
+</html>
