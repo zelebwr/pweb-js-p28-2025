@@ -21,19 +21,18 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url('../../assets/img.jpg') no-repeat;
+  background: url('../../assets/img.jpeg') no-repeat;
   background-size: cover;
   background-position: center;
 }
 
 .wrapper {
   border-radius: 10px;
-  background: transparent; /* --> nanti diganti transparan*/
-  color: white;
+  background: transparent;
   border: 2px solid rgba(255, 255, 255, .2);
   width: 400px;
   padding: 30px 40px;
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(10px);
   box-shadow: 0 0 10px rgba(0, 0, 0, .2);
 }
 
@@ -80,6 +79,22 @@ body {
   font-size: 16px;
   color: #333;
   font-weight: 600;
+}
+
+.wrapper .register-link {
+    font-size: 14.5px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.register-link p a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register-link p a:hover {
+    text-decoration: underline;
 }
 
 @media (max-width: 450px){
