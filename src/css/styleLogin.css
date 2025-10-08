@@ -15,24 +15,29 @@
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
-  color: var(--primary-dark);
+  color: var(--background);
   background-color: var(--background);
   height: 100vh; /* Yang membuat form menjadi tengah cuy*/
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url('../../assets/img.jpeg') no-repeat;
+<<<<<<< HEAD
+  background: url('../../assets/resep.png') no-repeat;
+=======
+  background: url('../../assets/img.jpg') no-repeat;
+>>>>>>> b6745cd9c3cd28a82569f1606799dbb4cc05c729
   background-size: cover;
   background-position: center;
 }
 
 .wrapper {
   border-radius: 10px;
-  background: transparent;
+  background: transparent; /* --> nanti diganti transparan*/
+  color: white;
   border: 2px solid rgba(255, 255, 255, .2);
   width: 400px;
   padding: 30px 40px;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(20px);
   box-shadow: 0 0 10px rgba(0, 0, 0, .2);
 }
 
@@ -81,22 +86,27 @@ body {
   font-weight: 600;
 }
 
+<<<<<<< HEAD
 .wrapper .register-link {
     font-size: 14.5px;
     text-align: center;
     margin-top: 20px;
+    
 }
 
 .register-link p a {
     color: #fff;
     text-decoration: none;
     font-weight: 600;
-}
+    color: var(--accent-light);
+  }
 
 .register-link p a:hover {
     text-decoration: underline;
 }
 
+=======
+>>>>>>> b6745cd9c3cd28a82569f1606799dbb4cc05c729
 @media (max-width: 450px){
   .wrapper {
     width: 90%;
