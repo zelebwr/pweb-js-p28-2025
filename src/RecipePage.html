@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        />
+        <title>Recipe Collection</title>
+        <style>
+            .app-hidden {
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="authMessageContainer"></div>
+        <!-- 
+            A main container to wrap the entire page content, and this should be used for the overall page layout styling.
+            When the user is logged in the "app-hidden" class will be removed to show the main content.
+        -->
+        <div class="page-container app-hidden" id="mainAppContainer">
+            <header class="page-header">
+                <h1 class="header-title">Discover Recipes</h1>
+                <p class="header-subtitle">
+                    Find your next favorite meal from our curated collection.
+                </p>
+            </header>
+
+            <!-- 
+                This section is intended for user's main page functional controls, e.e., search and filter. There would be a search bar and filter buttons.
+            -->
+            <section class="recipe-controls">
+                <div class="search-container">
+                    <input
+                        type="text"
+                        id="searchInput"
+                        class="search-input"
+                        placeholder="Search for a recipe..."
+                    />
+                    <button class="search-btn" id="searchBtn">
+                        <i class="fas fa-search"></i>
+                </div>
+
+                <!-- 
+                    Here, the <nav> tag is used for navigation links, where it is filled with filter buttons so the user can filter the recipes cuisine category.
+                -->
+                <nav class="filter-container" id="filterContainer">
+                    <!--
+                        Filter buttons will be added here by JavaScript.
+                        They will be something like this: 
+                        
+                        <button class="filter-btn filter-btn--active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="italian">Italian</button>
+                        <button class="filter-btn" data-filter="mexican">Mexican</button>
+                        and so on for each cuisine category.
+                    -->
+                </nav>
+            </section>
+
+            <main class="main-content">
+                <!-- 
+                    This container is for  status messages like loading indicators or error messages.
+                -->
+                <div class="status-container" id="statusContainer">
+                    <!-- 
+                        e.g.,
+                        <p class="loading-text">Loading recipes...</p>
+                        <p class="error-text">Could not load recipes.</p> 
+                     
+                    -->
+                </div>
+
+                <div class="recipe-grid" id="recipeContainer">
+                    <!-- 
+                        == EXAMPLE RECIPE CARD STRUCTURE ==
+                        This is a template for a single recipe card. Javascript will create one of these for each recipe. 
+                        The javascript will be using consistent class names (`recipe-card`, `card-image`, `card-title`, etc.), 
+                        a single set of CSS rules can style every card identically.
+                    -->
+                    <!--
+                        <div class="recipe-card" data-id="1">
+                            <div class="card-image-container">
+                                <img src="https://cdn.dummyjson.com/recipe-images/1.webp" alt="Classic Margherita Pizza" class="card-image">
+                                <div class="card-rating">4.6 ★</div>
+                            </div>
+                            <div class="card-content">
+                                <h3 class="card-title">Classic Margherita Pizza</h3>
+                                <p class="card-category">Italian</p>
+                                <div class="card-info">
+                                    <span class="card-info-item">Easy</span>
+                                    <span class="card-info-item">15 min</span>
+                                </div>
+                                <button class="card-button">View Full Recipe</button>
+                            </div>
+                        </div>
+                    -->
+                    <!-- The grid would be filled with more recipe cards like the one above -->
+                </div>
+            </main>
+
+            <!-- 
+                A "Show More" section to load additional recipes when clicked.
+            -->
+            <section class="load-more-container" id="showMoreContainer">
+                <button class="load-more-btn" id="showMoreBtn">
+                    Show More
+                </button>
+            </section>
+        </div>
+
+        <!-- 
+            == MODAL STRUCTURE ==
+            This section is for the pop-up that shows the full recipe details.
+            It's placed outside the main page container and at the end of the body.
+            It will be hidden by default.
+        -->
+        <div class="modal" id="recipeModal">
+            <div class="modal-content" id="modalContent">
+                <button class="modal-close-btn" id="closeModalBtn">
+                    &times;
+                </button>
+                <!-- 
+                    The full recipe details will be injected here by JavaScript.
+                    The structure can be similar to the recipe card but with more detail.
+                -->
+                <div class="modal-body" id="modalBody">
+                    <!-- 
+                        == DETAILED EXAMPLE MODAL BODY STRUCTURE ==
+                        When a user clicks "View Full Recipe", JavaScript will populate this modal-body
+                        with the following structure, using the specific recipe's data.
+                    -->
+                    <!--
+                        <img src="https://cdn.dummyjson.com/recipe-images/1.webp" alt="Classic Margherita Pizza" class="modal-image">
+                        
+                        <div class="modal-header">
+                            <h2 class="modal-title">Classic Margherita Pizza</h2>
+                            <div class="modal-meta">
+                                <span class="meta-item"><strong>Cuisine:</strong> Italian</span>
+                                <span class="meta-item"><strong>Difficulty:</strong> Easy</span>
+                                <span class="meta-item"><strong>Time:</strong> 15 mins</span>
+                                <span class="meta-item"><strong>Servings:</strong> 4</span>
+                                <span class="meta-item"><strong>Rating:</strong> 4.6 (${98} reviews)</span>
+                            </div>
+                        </div>
+                        <div class="modal-details-grid">
+                            <div class="modal-ingredients">
+                                <h3 class="modal-subtitle">Ingredients</h3>
+                                <ul class="ingredients-list">
+                                    <li>Pizza dough</li>
+                                    <li>Tomato sauce</li>
+                                    <li>Fresh mozzarella cheese</li>
+                                    <li>Fresh basil leaves</li>
+                                    <li>Olive oil</li>
+                                    <li>Salt and pepper to taste</li>
+                                </ul>
+                            </div>
+                            <div class="modal-instructions">
+                                <h3 class="modal-subtitle">Instructions</h3>
+                                <ol class="instructions-list">
+                                    <li>Preheat the oven to 475°F (245°C).</li>
+                                    <li>Roll out the pizza dough and spread tomato sauce evenly.</li>
+                                    <li>Top with slices of fresh mozzarella and fresh basil leaves.</li>
+                                    <li>Drizzle with olive oil and season with salt and pepper.</li>
+                                    <li>Bake in the preheated oven for 12-15 minutes or until the crust is golden brown.</li>
+                                    <li>Slice and serve hot.</li>
+                                </ol>
+                            </div>
+                        </div>
+                    -->
+                </div>
+            </div>
+        </div>
+
+        <script src="js/external.js"></script>
+    </body>
+</html>
