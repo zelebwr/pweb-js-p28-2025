@@ -8,12 +8,19 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         />
         <title>Recipe Collection</title>
+        <style>
+            .app-hidden {
+                display: none;
+            }
+        </style>
     </head>
     <body>
+        <div id="authMessageContainer"></div>
         <!-- 
             A main container to wrap the entire page content, and this should be used for the overall page layout styling.
+            When the user is logged in the "app-hidden" class will be removed to show the main content.
         -->
-        <div class="page-container">
+        <div class="page-container app-hidden" id="mainAppContainer">
             <header class="page-header">
                 <h1 class="header-title">Discover Recipes</h1>
                 <p class="header-subtitle">
@@ -166,6 +173,6 @@
             </div>
         </div>
 
-        <script src="script/external.js"></script>
+        <script src="js/external.js"></script>
     </body>
 </html>

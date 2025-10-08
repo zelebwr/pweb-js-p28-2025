@@ -1,5 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
     // --- DOM ELEMENT REFERENCES ---
+    const mainAppContainer = document.getElementById("mainAppContainer");
+    const authMessageContainer = document.getElementById(
+        "authMessageContainer"
+    );
     const recipeContainer = document.getElementById("recipeContainer");
     const searchInput = document.getElementById("searchInput");
     const searchBtn = document.getElementById("searchBtn");
@@ -22,6 +26,42 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- API DETAILS ---
     const API_URL = "https://dummyjson.com/recipes";
+    const USERS_API_URL = "https://dummyjson.com/users";
+
+    /**
+     * Checks if the user is logged in by looking for 'firstName' in localStorage.
+     * This function now controls whether the app loads or not.
+     */
+    const checkAuth = async () => {
+        const userFirstName = localStorage.getItem("firstName");
+
+        if (!userFirstName) {
+            displayLoginMessage();
+            return;
+        }
+
+        try {
+            const response = await fetch(USERS_API_URL);
+            if (!response.ok) {
+                throw new Error("Could not verify user.");
+            }
+            const data = await response.json();
+
+            const isValidUser = data.users.some(
+                (user) => user.firstName === userFirstName
+            );
+
+            if (isValidUser) {
+                mainAppContainer.classList.remove("app-hidden");
+                fetchRecipes();
+            } else {
+                displayLoginMessage();
+            }
+        } catch (error) {
+            console.error("Authentication check failed:", error);
+            displayLoginMessage();
+        }
+    };
 
     // --- CORE FUNCTIONS ---
 
@@ -278,5 +318,5 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // --- INITIALIZATION ---
-    fetchRecipes();
+    checkAuth();
 });
