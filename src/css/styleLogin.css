@@ -15,13 +15,13 @@
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
-  color: var(--primary-dark);
+  color: var(--background);
   background-color: var(--background);
   height: 100vh; /* Yang membuat form menjadi tengah cuy*/
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url('../../assets/img.jpeg') no-repeat;
+  background: url('../../assets/resep.png') no-repeat;
   background-size: cover;
   background-position: center;
 }
@@ -85,13 +85,15 @@ body {
     font-size: 14.5px;
     text-align: center;
     margin-top: 20px;
+    
 }
 
 .register-link p a {
     color: #fff;
     text-decoration: none;
     font-weight: 600;
-}
+    color: var(--accent-light);
+  }
 
 .register-link p a:hover {
     text-decoration: underline;
