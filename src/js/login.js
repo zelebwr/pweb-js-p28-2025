@@ -1,79 +1,82 @@
-// Menunggu hingga seluruh konten halaman HTML dimuat sebelum menjalankan skrip
 document.addEventListener('DOMContentLoaded', function () {
 
-    // 1. Memilih elemen-elemen dari HTML yang kita butuhkan
     const loginForm = document.getElementById('loginForm');
     const usernameInput = document.getElementById('username');
     const passwordInput = document.getElementById('password');
     const loginButton = document.getElementById('loginButton');
+    const notification = document.getElementById('notification');
 
-    // 2. Menambahkan event listener ke form saat disubmit
+    function showNotification(message, type) {
+        notification.textContent = message;
+        notification.className = `notification ${type}`;
+    }
+
+    function hideNotification() {
+        notification.textContent = '';
+        notification.className = 'notification';
+    }
+    
+    // --- MULAI PERUBAHAN DI SINI ---
     loginForm.addEventListener('submit', function (event) {
-        // Mencegah form mengirim data secara default (yang akan me-refresh halaman)
         event.preventDefault();
+        hideNotification();
 
-        // Mengambil nilai dari input username dan password
         const username = usernameInput.value.trim();
         const password = passwordInput.value.trim();
 
-        // Validasi sederhana: pastikan username dan password tidak kosong
-        if (username === '' || password === '') {
-            alert('Username dan Password tidak boleh kosong!');
-            return; // Menghentikan eksekusi lebih lanjut
+        // Logika baru untuk notifikasi yang lebih spesifik
+        if (username === '' && password === '') {
+            showNotification('Username dan Password tidak boleh kosong!', 'error');
+            return;
+        } else if (username === '') {
+            showNotification('Username tidak boleh kosong!', 'error');
+            return;
+        } else if (password === '') {
+            showNotification('Password tidak boleh kosong!', 'error');
+            return;
         }
 
-        // Memanggil fungsi untuk proses autentikasi
+        // Jika semua field terisi, lanjutkan ke proses autentikasi
         authenticateUser(username, password);
     });
+    // --- AKHIR PERUBAHAN DI SINI ---
 
-    // 3. Fungsi utama untuk autentikasi pengguna
+
     async function authenticateUser(username, password) {
-        // Menampilkan loading state saat proses login berlangsung 
         loginButton.disabled = true;
         loginButton.textContent = 'Sabar....';
 
         try {
-            // Mengambil data user dari API menggunakan fetch [cite: 20]
             const response = await fetch('https://dummyjson.com/users');
             
-            // Jika respons dari jaringan tidak ok (misal: error 404 atau 500)
             if (!response.ok) {
-                throw new Error('Gagal mengambil data pengguna. Coba lagi nanti.');
+                throw new Error('Server tidak merespons. Coba lagi nanti.');
             }
 
             const data = await response.json();
-            
-            // Mencari user di dalam array 'users' yang cocok dengan username yang diinput
-            // Sesuai ketentuan: Username harus sesuai dengan data dummy [cite: 29]
             const user = data.users.find(u => u.username === username);
 
-            // Cek apakah user ditemukan DAN passwordnya cocok (di dunia nyata, password akan di-hash)
-            // Untuk soal ini, kita asumsikan password dari API adalah password yang benar.
             if (user && user.password === password) {
-                // Menampilkan success message saat login berhasil [cite: 32]
-                alert(`Login berhasil! Selamat datang, ${user.firstName}.`);
-
-                // Pastikan variabel firstName dari user tersimpan di localStorage 
+                showNotification(`Login berhasil! Selamat datang, ${user.firstName}.`, 'success');
                 localStorage.setItem('firstName', user.firstName);
-
-                // Setelah login sukses, user otomatis diarahkan ke page recipes 
-                window.location.href = 'recipePage.html';
+                setTimeout(() => {
+                    window.location.href = 'recipePage.html';
+                }, 1500);
 
             } else {
-                // Error handling ketika username/password salah 
-                alert('Username atau Password salah!');
+                showNotification('Username atau Password salah!', 'error');
             }
 
         } catch (error) {
-            // Error handling ketika koneksi API bermasalah 
             console.error('Terjadi kesalahan:', error);
-            alert('Gagal terhubung ke server. Periksa koneksi internet Anda.');
+            showNotification('Gagal terhubung ke server. Periksa koneksi internet Anda.', 'error');
 
         } finally {
-            // Bagian ini akan selalu dijalankan, baik login berhasil maupun gagal
-            // Mengembalikan tombol ke keadaan semula
-            loginButton.disabled = false;
-            loginButton.textContent = 'Login';
+            const isLoginSuccessful = notification.classList.contains('success');
+            if (!isLoginSuccessful) {
+                loginButton.disabled = false;
+                loginButton.textContent = 'Login';
+            }
         }
     }
 });
