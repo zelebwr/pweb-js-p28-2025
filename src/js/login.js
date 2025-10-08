@@ -5,6 +5,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const passwordInput = document.getElementById('password');
     const loginButton = document.getElementById('loginButton');
     const notification = document.getElementById('notification');
+    const registerLink = document.querySelector('.register-link a');
+
+    registerLink.addEventListener('click', function(event) {
+        event.preventDefault(); 
+        showNotification('Coming Soon!', 'info');
+        alert('Coming Soon! Fitur registrasi belum tersedia.');
+    });
 
     function showNotification(message, type) {
         notification.textContent = message;
@@ -16,7 +23,6 @@ document.addEventListener('DOMContentLoaded', function () {
         notification.className = 'notification';
     }
     
-    // --- MULAI PERUBAHAN DI SINI ---
     loginForm.addEventListener('submit', function (event) {
         event.preventDefault();
         hideNotification();
@@ -24,7 +30,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const username = usernameInput.value.trim();
         const password = passwordInput.value.trim();
 
-        // Logika baru untuk notifikasi yang lebih spesifik
         if (username === '' && password === '') {
             showNotification('Username dan Password tidak boleh kosong!', 'error');
             return;
@@ -36,11 +41,8 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        // Jika semua field terisi, lanjutkan ke proses autentikasi
         authenticateUser(username, password);
     });
-    // --- AKHIR PERUBAHAN DI SINI ---
-
 
     async function authenticateUser(username, password) {
         loginButton.disabled = true;
@@ -80,3 +82,4 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 });
+// Kurung kurawal '}' yang berlebih di sini telah dihapus

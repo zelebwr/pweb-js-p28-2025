@@ -21,11 +21,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-<<<<<<< HEAD
   background: url('../../assets/resep.png') no-repeat;
-=======
-  background: url('../../assets/img.jpg') no-repeat;
->>>>>>> b6745cd9c3cd28a82569f1606799dbb4cc05c729
   background-size: cover;
   background-position: center;
 }
@@ -86,7 +82,6 @@ body {
   font-weight: 600;
 }
 
-<<<<<<< HEAD
 .wrapper .register-link {
     font-size: 14.5px;
     text-align: center;
@@ -105,8 +100,6 @@ body {
     text-decoration: underline;
 }
 
-=======
->>>>>>> b6745cd9c3cd28a82569f1606799dbb4cc05c729
 @media (max-width: 450px){
   .wrapper {
     width: 90%;
