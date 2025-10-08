@@ -1,9 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
     // --- DOM ELEMENT REFERENCES ---
     const mainAppContainer = document.getElementById("mainAppContainer");
-    const authMessageContainer = document.getElementById(
-        "authMessageContainer"
-    );
+    const authMessageContainer = document.getElementById("authMessageContainer");
+    const navActions = document.getElementById("navActions");
     const recipeContainer = document.getElementById("recipeContainer");
     const searchInput = document.getElementById("searchInput");
     const searchBtn = document.getElementById("searchBtn");
@@ -28,6 +27,27 @@ document.addEventListener("DOMContentLoaded", () => {
     const API_URL = "https://dummyjson.com/recipes";
     const USERS_API_URL = "https://dummyjson.com/users";
 
+    const handleLogout = () => {
+        localStorage.removeItem("firstName");
+        window.location.href = "LoginPage.html";
+    }
+
+    const setupNavbar = (isLoggedIn, firstName) => {
+        if (isLoggedIn) {
+            navActions.innerHTML = `
+                <span class="nav-welcome">Welcome, ${firstName}!</span>
+                <button id="logoutBtn" class="nav-btn">Logout</button>
+            `;
+            document
+                .getElementById("logoutBtn")
+                .addEventListener("click", handleLogout);
+        } else {
+            navActions.innerHTML = `
+                <a href="loginPage.html"><button class="nav-btn">Login</button></a>
+            `;
+        }
+    };
+
     /**
      * Checks if the user is logged in by looking for 'firstName' in localStorage.
      * This function now controls whether the app loads or not.
@@ -36,6 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const userFirstName = localStorage.getItem("firstName");
 
         if (!userFirstName) {
+            setupNavbar(false);
             displayLoginMessage();
             return;
         }
@@ -52,6 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
             );
 
             if (isValidUser) {
+                setupNavbar(true, userFirstName);
                 mainAppContainer.classList.remove("app-hidden");
                 fetchRecipes();
             } else {
@@ -59,8 +81,20 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         } catch (error) {
             console.error("Authentication check failed:", error);
+            setupNavbar(false);
             displayLoginMessage();
         }
+    };
+
+    const displayLoginMessage = () => {
+        mainAppContainer.style.display = "none";
+        authMessageContainer.innerHTML = `
+            <div style="text-align: center; padding: 40px;">
+                <h2>Access Denied</h2>
+                <p>You must be logged in to view the recipes.</p>
+                <p><a href="loginPage.html">Click here to go to the Login Page</a></p>
+            </div>
+        `;
     };
 
     // --- CORE FUNCTIONS ---

@@ -20,13 +20,56 @@ body {
   line-height: 1.6;
 }
 
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--gray-dark);
+    padding: 0.8rem 2rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-brand h2 {
+    color: var(--cream);
+    font-size: 1.5rem;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.welcome-msg {
+    font-size: 0.9rem;
+    color: var(--cream);
+    opacity: 0.9;
+}
+
+.nav-btn {
+    background-color: var(--greenish);
+    color: var(--cream);
+    border: none;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.nav-btn:hover {
+    background-color: #525e50;
+}
+
 /* === HEADER === */
 header {
   background-color: var(--gray-dark);
   color: var(--cream);
   text-align: center;
   padding: 2rem 1rem;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
 }
 
 header h1 {
